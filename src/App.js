@@ -8,6 +8,7 @@ class App extends React.Component {
     };
     window.navigator.geolocation.getCurrentPosition(
       (pos) => {
+        // setState is how you manipulate the state object
         this.setState({lat: pos.coords.latitude});
       },
       (err) => console.log("failed to get location", err)
