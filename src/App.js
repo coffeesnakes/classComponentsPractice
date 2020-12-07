@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from "react";
 
 class App extends React.Component {
   constructor(props) {
@@ -6,13 +6,15 @@ class App extends React.Component {
     this.state = {
       lat: null,
     };
+    window.navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        this.setState({lat: pos.coords.latitude});
+      },
+      (err) => console.log("failed to get location", err)
+    );
   }
   render() {
-           window.navigator.geolocation.getCurrentPosition(
-             pos => console.log(pos),
-             err => console.log("failed to get location", err)
-           );
-           return <div> Latitude: </div>
+    return <div> Latitude: {this.state.lat} </div>;
   }
 }
 
