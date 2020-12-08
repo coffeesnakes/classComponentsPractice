@@ -17,6 +17,12 @@ class App extends React.Component {
       }
     );
   }
+  componentDidMount() {
+    console.log('this will be logged on mount');
+  }
+  componentDidUpdate(){
+    console.log('log on update');
+  }
   render() {
     if (this.state.Failure_To_Load && !this.state.lat) {
       return <div>FAILED TO LOAD: {this.state.Failure_To_Load}</div>;
