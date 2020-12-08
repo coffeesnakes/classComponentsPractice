@@ -5,13 +5,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       lat: null,
-      Failure_To_Load: '',
-
+      Failure_To_Load: "",
     };
     window.navigator.geolocation.getCurrentPosition(
       (pos) => {
         // setState is how you manipulate the state object
-        this.setState({lat: pos.coords.latitude});
+        this.setState({ lat: pos.coords.latitude });
       },
       (err) => {
         this.setState({ Failure_To_Load: err.message });
@@ -19,12 +18,14 @@ class App extends React.Component {
     );
   }
   render() {
-    return <div> Latitude: {this.state.lat}
-    <br />
-  <div>Failed to load: {this.state.Failure_To_Load}</div>
-    </div>
+    if (this.state.Failure_To_Load && !this.state.lat) {
+      return <div>FAILED TO LOAD: {this.state.Failure_To_Load}</div>;
+    }
+    if (this.state.lat && !this.state.Failure_To_Load) {
+      return <div>Latitude: {this.state.lat}</div>;
+    }
+    return <div>Loading...</div>;
   }
 }
 
 export default App;
-
